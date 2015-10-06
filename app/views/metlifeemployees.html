@@ -1,0 +1,49 @@
+<div id="employeespage" class="clear">
+	<section id="intro-mod" class="pattern parents">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<img class="brandlogo img-responsive" ng-cache ng-src="{{MetLifeEmp.intro_banner}}"/>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="{{parent.name}}" class="pad10 pbottom30" ng-class="{'odd' :($index % 2 == 0), 'even' : ($index % 2 != 0)}" ng-repeat="parent in MetLifeEmp.parents">
+	  	<div class="container">
+			<div class="row">
+				<div class="col-xs-6 pad10">
+					<h1 class="headline" style="background:{{parent.background_color}}">{{parent.title}}</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 pcntdiv_{{$index+1}}">
+					<p class="response-description" ng-bind-html="parent.description"></p>
+					<div ng-if="parent.links">
+						<div class="links">
+							<ul class="li nomargin nopad">
+								<li class="inline pright20" ng-repeat="link in parent.links">
+									<a href="{{link.linkurl}}">{{link.title}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-xs-12">
+						<style> .pcntdiv_{{$index+1}}{width:90%;}</style>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="relative pattern"></div>
+	<section id="metlife-ad">
+		<div class="container mcdiv">
+			<div class="row row-centered">
+				<div class="col-xs-10 col-centered metlifediv" ng-show="Metlife.metlife_button_text">
+					<h5 class="ucase">{{Metlife.metlife_text}}</h5>
+					<img class="inline pleft40 pright40 img-responsive" src="{{Metlife.metlife_logo}}" class="img-responsive"/>
+					<a target="_blank" href="{{Metlife.metlife_link}}" class="site-btn">{{Metlife.metlife_button_text}} </a>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

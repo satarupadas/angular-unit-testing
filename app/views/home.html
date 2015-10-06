@@ -1,0 +1,208 @@
+<section class="mobile">
+	<div class="container pad10 pbottom10">
+		<div class="row">
+			<div class="mnavbtn col-xs-12">
+					
+				<div class="col-xs-6 mnav" ng-repeat="nav in Home.navigation">
+					<div class="mbtn {{nav.name}}">
+						<a href="#/{{nav.name}}" title="{{nav.label}}">
+						<span class="{{nav.name}} icon"></span>
+						<span class="title">{{nav.label}}</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div id="homepage">
+
+	<section class="mobilebanner homediv">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center mobile">
+					<img class="wd100" ng-cache ng-src="{{Home.introsection.mobile_banner}}"/>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+
+<section id="metlife-ad">
+	<div class="container mcdiv">
+		<div class="row row-centered">
+			<div class="col-xs-10 col-centered metlifediv" ng-show="Metlife.metlife_button_text"> 
+				<h5 class="ucase">{{Metlife.metlife_text}}</h5>
+				<img class="inline pleft40 pright40 img-responsive" src="{{Metlife.metlife_logo}}" class="img-responsive"/>
+				<a href="{{Metlife.metlife_link}}" target="_blank" class="site-btn">{{Metlife.metlife_button_text}} </a>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="h_thumbs tablet mobile homediv">
+	<div class="container">
+		<div class="row h_thumbs row-centered pad20 pbottom30">					
+			<div class="introbox col-xs-6" ng-repeat="article in Home.articles">	
+				<div ng-if="article.type == 'games'">
+					<div class="sesame-pop-game">	
+						<a id="{{article.name}}" class="gmobile  popup-games gameclass mfp-iframe {{article.name}}" title="{{article.title}}" ng-click="onGameClick($event, article.url)">
+							<div class="{{article.type}} thumbbox">
+								<div class="rounded relative" style="background:url({{article.poster_image}}) no-repeat">
+									<img ng-cache ng-src="{{article.poster_image}}" class="wd100"/>
+									<span class="gicon"></span>
+									<div class="thumb_desc">
+										<h6>{{article.title}}</h6>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div ng-if="article.type == 'audio'">
+					<div class="sesame-pop-audio">
+				        <div id="{{article.name}}" class="mfp-hide col-xs-12 col-centered">
+							<div class="topbar">
+						  		<h6 class="text-left flight">{{article.title}}</h6>
+						  	</div>
+						  	<div class="bottombar">
+							 	<div class="audio-js-box vim-css">
+							    <audio class="audio-js" controls preload>
+							      <source ng-src="{{article.url}}">
+							    </audio>
+							  </div>
+							</div>
+						</div>
+						<a class="popup-audio audioclass {{article.name}}" title="{{article.title}}" href="#{{article.name}}">
+						    <div class="audio thumbbox">
+								<div class="rounded relative">
+									<img ng-cache ng-src="{{article.poster_image}}" class="wd100" alt="{{article.title}}"/>
+									<span class="aicon"></span>
+									<div class="thumb_desc">
+										<h6>{{article.title}}</h6>
+									</div>
+								</div>
+							</div>
+						</a>					
+					</div>
+				</div>
+				<div ng-if="article.type == 'video'">
+					<div class="sesame-pop-video">
+						<div id="{{article.name}}" class="white-popup-block mfp-hide videolightbox">
+							<div class="videotitle">{{article.title}}</div>
+							<!-- Begin Video.js Responsive Wrapper -->
+							<div style=''>
+								<div class='video-wrapper' style='padding-bottom:56.25%;'>
+									<!-- Begin Video.js -->
+									<video id="example_video_id_928633623" class="video-js vjs-default-skin vjs-sesame-skin" width="" height="" controls preload="none" data-setup='[]'>
+										<source ng-src="article.url" type='video/mp4' />
+									</video>
+									<!-- End Video.js -->
+								</div>
+							</div>
+							<!-- End Video.js Responsive Wrapper -->
+							<div class="vjs-big-play-button" aria-live="polite" tabindex="0" aria-label="play video">
+								<span></span>
+							</div>
+						</div>
+						<a class="popup-video videoclass {{article.name}}" title="{{article.title}}" ng-click="onVideoClick($event, article.url)">
+							<div class="video thumbbox">
+								<div class="rounded relative">
+									<img ng-cache ng-src="{{article.poster_image}}" class="wd100" alt="{{article.title}}"/>
+									<span class="vicon"></span>
+									<div class="thumb_desc">
+										<h6>{{article.title}}</h6>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div ng-if="article.type == 'activities'">
+					<div class="sesame-pop-activity">
+						<a class="popup-activity  activityclass {{article.name}}" title="{{article.title}}" data-sect="{{article.name}}_mob"  ng-click="onActivityClick($event)" >
+							<div class="activity thumbbox">
+								<div class="rounded relative">
+									<img ng-cache ng-src="{{article.poster_image}}" class="wd100" alt="{{article.title}}"/>
+									<span class="acicon"></span>
+									<div class="thumb_desc">
+										<h6>{{article.title}}</h6>
+									</div>
+								</div>
+							</div>
+						</a>
+						<div class="activitymobile single_activity" id="{{article.name}}_mob">
+							<div id="{{article.name}}" class="activitylbox">
+								<div class="row pad20 pbottom30">
+									<div class="activityblock">
+										<div class="col-md-6  col-xs-8">
+											<h2>{{article.title}}</h2>
+											<div class="comic_txt">
+												<p class="response-description" ng-bind-html="article.description"></p>
+											</div>
+										</div>
+										<div class="col-md-6  col-xs-4">	
+											<a class="site-btn back_btn goback" data-sect="{{article.name}}_mob" ><span class="font-icon back-icon"></span> {{StaticLabels.back_button}}</a>
+										</div>	
+									</div>
+									<div class="text-center">
+										<a ng-click="openPdfLink($event, article.download_file, article.file_url)" class="download-doc">
+											<div class="downloadbtn site-btn popupbox">{{StaticLabels.download_button}} <span class="font-icon dl-icon"></span></div>
+										</a>
+									</div>
+								</div>
+								<div class="row" ng-if="article.gallery != 0">
+									<div class="responsive_slider">
+										<div class="owl-single-activity">
+											<div class="item" ng-repeat="pic in article.gallery">
+												<img class="" ng-cache ng-src="{{pic}}"/>
+											</div>	
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>										
+		</div>
+	</div>
+</section>
+<section class="f4bg" id="home_pages">
+	<div class="container pbottom40">
+		<div class="row">
+			<div class="col-xs-12 home_page_box" ng-show="Home.parents.button_text">
+				<h4 class="fbold ucase">{{Home.parents.title}}</h4>
+				<img ng-cache ng-src="{{Home.parents.image}}" class="img-repsosnive hidden-xs wd100" alt="PARENTS, CAREGIVERS, AND EDUCATORS"/>
+				<p class="response-description" ng-bind-html="Home.parents.description"></p>
+				<ul class="li nopad">
+					<li ng-repeat="plink in Home.parents.links">
+						<a href="#/parents" title="Parents & Caregivers">{{plink.title}}</a>
+					</li>
+					<!-- <li>
+						<a href="#/parents" title="Educators">Educators</a>
+					</li> -->
+				</ul>
+				<a href="#/parents" class="site-btn phone-change">{{Home.parents.button_text}}</a>
+			</div>
+			<div class="col-xs-12 home_page_box" ng-show="Home.metlife.button_text">
+				<h4 class="fbold ucase">{{Home.metlife.title}}</h4>
+				<img ng-cache ng-src="{{Home.metlife.image}}" class="img-repsosnive hidden-xs wd100" alt="{{Home.metlife.title}}"/>
+				<p class="response-description" ng-bind-html="Home.metlife.description"></p>
+				<a href="{{Home.metlife.button_link}}" class="site-btn phone-change">{{Home.metlife.button_text}}</a>
+			</div>
+			<div class="col-xs-12 home_page_box" ng-show="Home.sesame.button_text">
+				<h4 class="fbold ucase">{{Home.sesame.title}}</h4>
+				<img ng-cache ng-src="{{Home.sesame.image}}" class="img-repsosnive hidden-xs wd100" alt="{{Home.sesame.title}}"/>
+				<p class="response-description" ng-bind-html="Home.sesame.description"></p>
+				<a href="{{Home.sesame.button_link}}" class="site-btn phone-change">{{Home.sesame.button_text}}</a>
+			</div>
+		</div>
+	</div>
+
+</section>
+<section id="bannershape">
+	<div class="bannershape"></div>
+</section>

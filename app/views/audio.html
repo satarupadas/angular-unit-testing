@@ -1,0 +1,71 @@
+<style>
+html{overflow: auto !important;}
+</style>
+<div id="audiopage">
+	<section class="audio">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12" id="videohead" ng-show="PageInfo.title">
+					<h1 class="headline">{{PageInfo.title}}</h1>
+				</div>
+				<div class="col-xs-12 pull-right text-right" id="categoryhead">
+					<div class="categorydiv">
+						<ul ng-if="categoryList.length">
+							<li class="filter" ng-class="{'active': type == 'all'}">
+								<a href="" ng-click="onCategoryClick('all')">{{StaticLabels.all}}</a>
+							</li>
+							<li class="filter" ng-class="{'active': type == '{{cat}}'}" ng-repeat="cat in categoryList | unique">
+								<a href="" ng-click="onCategoryClick(cat)">{{cat}}</a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row pbottom30 relative">
+				<div class="searchloop" id="searchloop">
+					<div class="col-xs-12">
+						<div class="sesame-pop-audio introbox col-xs-6" data-myorder="{{$index+1}}" ng-repeat="audio in Audios | category : type">
+					        <div id="{{audio.name}}" class="mfp-hide col-xs-12 col-centered">
+								<div class="topbar">
+							  		<h6 class="text-left flight">{{audio.title}}</h6>
+							  	</div>
+							  	<div class="bottombar">
+								 	<div class="audio-js-box vim-css">
+								    <audio class="audio-js" controls preload>
+								      <source ng-src="{{audio.audio_url}}">
+								    </audio>
+								  </div>
+								</div>
+							</div>
+							<a class="popup-audio audioclass {{audio.name}}" title="{{audio.title}}" href="#{{audio.name}}">
+							    <div class="audio thumbbox">
+									<div class="rounded relative">
+										<img ng-cache ng-src="{{audio.poster_image}}" class="wd100" alt="{{audio.title}}"/>
+										<span class="aicon"></span>
+										<div class="thumb_desc">
+											<h6>{{audio.title}}</h6>
+										</div>
+									</div>
+								</div>
+							</a>					
+						</div>
+					</div>
+				</div>
+				<div class="pager-list"></div>
+			</div>
+		</div>	
+	</section>
+</div>
+
+<div class="relative pattern"></div>
+<section id="metlife-ad">
+	<div class="container mcdiv">
+		<div class="row row-centered">
+			<div class="col-xs-10 col-centered metlifediv" ng-show="Metlife.metlife_button_text">
+				<h5 class="ucase">{{Metlife.metlife_text}}</h5>
+				<img class="inline pleft40 pright40 img-responsive" src="{{Metlife.metlife_logo}}" class="img-responsive"/>
+				<a target="_blank" href="{{Metlife.metlife_link}}" class="site-btn">{{Metlife.metlife_button_text}} </a>
+			</div>
+		</div>
+	</div>
+</section>

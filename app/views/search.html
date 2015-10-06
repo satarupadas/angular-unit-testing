@@ -1,0 +1,173 @@
+<div id="searchpage">
+	<section class="searchpage">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 s-result" id="videohead" ng-show="StaticLabels.search_results">
+					<h1 class="headline">{{StaticLabels.search_results}}: {{stag}}</h1>
+				</div>
+				<div class="col-md-5 col-xs-12 col-sm-9 pull-right text-right" id="categoryhead">
+					<div class="categorydiv">
+						<ul ng-if="categoryList.length">
+							<li class="filter" ng-class="{'active': type == 'all'}">
+								<a href="" ng-click="onCategoryClick('all')">{{StaticLabels.all}}</a>
+							</li>
+							<li class="filter" ng-class="{'active': type == '{{cat}}'}" ng-repeat="cat in categoryList | unique">
+								<a href="" ng-click="onCategoryClick(cat)">{{cat}}</a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row pbottom30 relative">
+				<div class="searchloop">
+					<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" ng-if="Searches">
+						<div class="introbox col-lg-3 col-md-4 col-xs-6 col-sm-6" ng-repeat="search in Searches | category : type">
+							<div ng-if="search.type == 'games'">
+								<div class="sesame-pop-game">
+								    <div class="g_{{search.name}}">
+								    	<a class="" title="{{search.title}}" href="{{search.file_url}}"></a>
+								    </div>		
+									<a id="{{search.name}}" class="gmobile  popup-games gameclass {{search.name}}" title="{{search.title}}" ng-click="onGameClick($event, search.file_url)">
+										<div class="games thumbbox">
+											<div class="rounded relative" style="background:url({{search.poster_image}}) no-repeat">
+												<img ng-cache ng-src="{{search.poster_image}}" class="wd100"/>
+												<span class="gicon"></span>
+												<div class="thumb_desc">
+													<h6>{{search.title}}</h6>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div ng-if="search.type == 'video'">
+								<div class="sesame-pop-video">
+									<div id="{{search.name}}" class="white-popup-block mfp-hide videolightbox">
+										<div class="videotitle">{{search.title}}</div>
+										<!-- Begin Video.js Responsive Wrapper -->
+										<div style=''>
+											<div class='video-wrapper' style='padding-bottom:56.25%;'>	
+												<!-- Begin Video.js -->
+												<video id="example_video_id_1249752624" class="video-js vjs-default-skin vjs-sesame-skin" width="" height="" controls preload="none" data-setup='[]'>
+													<source ng-src="{{search.file_url}}" type='video/mp4' />
+												</video>
+												<!-- End Video.js -->
+											</div>
+										</div>
+										<!-- End Video.js Responsive Wrapper -->
+										<div class="vjs-big-play-button" aria-live="polite" tabindex="0" aria-label="play video"><span></span></div>
+									</div>
+									<a class="popup-video videoclass {{search.name}}" title="{{search.title}}" ng-click="onVideoClick($event, search.file_url)">
+										<div class="video thumbbox">
+											<div class="rounded relative">
+												<img ng-cache ng-src="{{search.poster_image}}" class="wd100" alt="{{search.title}}"/>
+												<span class="vicon"></span>
+												<div class="thumb_desc">
+													<h6>{{search.title}}</h6>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div ng-if="search.type == 'audio'">
+								<div class="sesame-pop-audio">
+									<div id="{{search.name}}" class="mfp-hide col-xs-12 col-centered">
+										<div class="topbar">
+									  		<h6 class="text-center flight">{{search.title}}</h6>
+									  	</div>
+									  	<div class="bottombar">
+											 	<div class="audio-js-box vim-css">
+											    <audio class="audio-js" controls preload>
+											      <source ng-src="{{search.file_url}}">
+											    </audio>
+											  </div>
+										</div>
+									</div>
+									<a class="popup-audio audioclass {{search.name}}" title="{{search.title}}" href="#{{search.name}}">
+									    <div class="audio thumbbox">
+											<div class="rounded relative">
+												<img ng-cache ng-src="{{search.poster_image}}" class="wd100" alt="{{search.title}}"/>
+												<span class="aicon"></span>
+												<div class="thumb_desc">
+													<h6>{{search.title}}</h6>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div ng-if="search.type == 'activity'">
+								<div class="sesame-pop-activity">
+						       		<input type="hidden" name="scpost" id="scpost" value="">
+									<a class="popup-activity activityclass {{search.name}}" data-tab="{{search.name}}" title="{{search.title}}" data-sect="{{search.name}}_mob"  ng-click="onActivityClick($event)">
+											<div class="activity thumbbox">
+											<div class="rounded relative">
+												<img ng-cache ng-src="{{search.poster_image}}" class="wd100">
+												<span class="acicon"></span>
+												<div class="thumb_desc">
+													<h6>{{search.title}}</h6>
+												</div>
+											</div>
+										</div>
+									</a>
+									<div class="activitymobile single_activity" id="{{search.name}}_mob">
+										<div id="{{search.name}}" class="activitylbox">
+											<div class="row pad20 pbottom30">
+												<div class="activityblock">
+													<div class="col-md-6  col-xs-8">
+														<h2>{{search.title}}</h2>
+														<div class="comic_txt">
+															<p class="response-description" ng-bind-html="search.description"></p>
+														</div>
+													</div>
+													<div class="col-md-6  col-xs-4">	
+														<a class="site-btn back_btn goback" data-sect="{{search.name}}_mob" ><span class="font-icon back-icon"></span> {{StaticLabels.back_button}}</a>
+													</div>	
+												</div>
+												<div class="text-center">
+													<a ng-click="openPdfLink($event, search.download_url, search.file_url)" class="download-doc">
+														<div class="downloadbtn site-btn popupbox">{{StaticLabels.download_button}} <span class="font-icon dl-icon"></span></div>
+													</a>
+												</div>
+											</div>
+											<div class="row" ng-if="search.gallery != 0">
+												<div class="responsive_slider">
+													<div class="owl-single-activity">
+														<div class="item" ng-repeat="pic in search.gallery">
+															<img class="" ng-cache ng-src="{{pic}}"/>
+														</div>	
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>							
+							</div>
+							<div ng-if="search.type == 'character'"></div>
+						</div>
+					</div>
+					<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" ng-if="!Searches">				
+						<h4 class="">{{StaticLabels.no_results}}</h4>
+						<a href="#/">
+							<div class="downloadbtn site-btn">Home</div>
+						</a>
+					</div>
+				</div>
+				<div class="pager-list"></div>
+			</div>
+		</div>
+	</section>
+	<div class="relative pattern"></div>
+	<section id="metlife-ad">
+		<div class="container mcdiv">
+			<div class="row row-centered">
+				<div class="col-xs-10 col-centered metlifediv" ng-show="Metlife.metlife_button_text">
+					<h5 class="ucase">{{Metlife.metlife_text}}</h5>
+					<img class="inline pleft40 pright40 img-responsive" src="{{Metlife.metlife_logo}}" class="img-responsive"/>
+					<a href="{{Metlife.metlife_link}}" class="site-btn">{{Metlife.metlife_button_text}} </a>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

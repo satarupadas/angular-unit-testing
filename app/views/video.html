@@ -1,0 +1,74 @@
+<div id="videospage">
+	<section class="videos">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12" id="videohead" ng-show="PageInfo.title">
+					<h1 class="headline">{{PageInfo.title}}</h1>
+				</div>
+				<div class="col-xs-12 pull-right text-right" id="categoryhead">
+					<div class="categorydiv">
+						<ul ng-if="categoryList.length">
+							<li class="filter" ng-class="{'active': type == 'all'}">
+								<a href="" ng-click="onCategoryClick('all')">{{StaticLabels.all}}</a>
+							</li>
+							<li class="filter" ng-class="{'active': type == '{{cat}}'}" ng-repeat="cat in categoryList | unique">
+								<a href="" ng-click="onCategoryClick(cat)">{{cat}}</a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row relative pbottom30">
+				<div class="searchloop" id="searchloop">
+					<div class="col-xs-12">
+						<div class="sesame-pop-video introbox col-xs-12" ng-repeat="video in Videos | category : type">
+					       	<div id="{{video.name}}" class="white-popup-block mfp-hide videolightbox">
+								<!-- <div class="videotitle">{{video.title}}</div> -->
+					
+								<!-- Begin Video.js Responsive Wrapper -->
+								<div class="clearfix">
+									<div class='video-wrapper' style='padding-bottom:56.25%;'>
+										
+										<!-- Begin Video.js -->
+										<video id="example_video_id_1764351987" class="video-js vjs-default-skin vjs-sesame-skin" width="" height="" controls preload="none" data-setup='[]'>
+											<source ng-src="{{video.video_url}}" type='video/mp4' />
+										</video>
+										<!-- End Video.js -->
+
+									</div>
+								</div>
+								<!-- End Video.js Responsive Wrapper -->
+								<div class="vjs-big-play-button" aria-live="polite" tabindex="0" aria-label="play video"><span></span></div>
+							</div>
+							<a class="popup-video videoclass {{video.name}}" title="{{video.title}}" ng-click="onVideoClick($event, video.video_url)">
+								<div class="video thumbbox">
+									<div class="rounded relative">
+										<img ng-cache ng-src="{{video.poster_image}}" class="wd100" alt="{{video.title}}"/>
+										<span class="vicon"></span>
+										<div class="thumb_desc">
+											<h6>{{video.title}}</h6>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="pager-list"></div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<div class="relative pattern"></div>
+<section id="metlife-ad">
+	<div class="container mcdiv">
+		<div class="row row-centered">
+			<div class="col-xs-10 col-centered metlifediv" ng-show="Metlife.metlife_button_text">
+				<h5 class="ucase">{{Metlife.metlife_text}}</h5>
+				<img class="inline pleft40 pright40 img-responsive" src="{{Metlife.metlife_logo}}" class="img-responsive"/>
+				<a href="{{Metlife.metlife_link}}" class="site-btn">{{Metlife.metlife_button_text}} </a>
+			</div>
+		</div>
+	</div>
+</section>

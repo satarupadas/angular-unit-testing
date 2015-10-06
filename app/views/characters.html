@@ -1,0 +1,40 @@
+<div id="charcterspage">
+	<section class="characters">
+		<div class="container">
+			<div class="row pbottom30 mobile">
+				<div class="col-xs-12" id="videohead" ng-show="PageInfo.title">
+					<h1 class="headline">{{PageInfo.title}}</h1>
+				</div>
+				<div class="mcharcaterdiv col-xs-12 pad30">
+					<div id="mc_{{$index+1}}" class="sesame-light-box-character item imgdiv" ng-class="{'col-xs-12 full' :($index % 5 == 0), 'col-xs-6 half' : ($index % 5 != 0)}" ng-repeat="character in Characters">
+						<img ng-cache ng-src="{{character.default_image}}" alt="{{character.name}}"/>
+						<div class="image_content"> 
+							<div class="col-xs-6 text-center ic_image">
+								<img ng-cache ng-src="{{character.lightbox_image}}" class="img-responsive" alt="{{character.title}}"/>
+							</div>
+							<div class="col-xs-6 ic_desc">
+								<h3>{{character.title}}</h3>
+								<p>
+									<p class="response-description" ng-bind-html="character.short_description"></p>
+								</p>
+							</div>
+							<div class="close"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="relative pattern clear"></div>
+	<section id="metlife-ad">
+		<div class="container mcdiv">
+			<div class="row row-centered">
+				<div class="col-xs-10 col-centered metlifediv" ng-show="Metlife.metlife_button_text">
+					<h5 class="ucase">{{Metlife.metlife_text}}</h5>
+					<img class="inline pleft40 pright40 img-responsive" src="{{Metlife.metlife_logo}}" class="img-responsive"/>
+					<a target="_blank" href="{{Metlife.metlife_link}}" class="site-btn">{{Metlife.metlife_button_text}} </a>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

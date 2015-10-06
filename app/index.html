@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="sesameApp">
+<head>
+	<title>Sesame Street</title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+	<link rel='stylesheet' id='videojs-plugin-css'  href='http://sesameapi.jumpcatch.com/wp-content/plugins/videojs-html5-video-player-for-wordpress/plugin-styles.css?ver=4.1' type='text/css' media='all' />
+	<link rel="stylesheet" id="owl-styles-css" href="styles/owl.carousel.css" type="text/css" media="all">
+	<link rel='stylesheet' id='theme-default-css'  href='styles/theme-default.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='theme-sesame-css'  href='styles/theme-sesame.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='theme-responsive-css'  href='styles/theme-responsive.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='theme-styles-css'  href='styles/theme-styles.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='theme-styles-css'  href='styles/theme-phonegap.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='theme-backend-css'  href='http://sesameapi.jumpcatch.com/wp-content/themes/sesamestreet/theme-backend.css.php?ver=20150225' type='text/css' media='all' />
+	<script type='text/javascript' src='scripts/vendors/jquery.js'></script>
+	<script type='text/javascript' src='scripts/vendors/jquery-migrate.min.js'></script>
+	<script type="text/javascript" src="scripts/vendors/owl.carousel.min.js"></script>
+	<style type='text/css'>
+		.vjs-default-skin { color: #ffffff }
+		.vjs-default-skin .vjs-play-progress, .vjs-default-skin .vjs-volume-level { background-color: #66A8CC }
+		.vjs-default-skin .vjs-control-bar, .vjs-default-skin .vjs-big-play-button { background: rgba(0,0,0,0.7) }
+		.vjs-default-skin .vjs-slider { background: rgba(0,0,0,0.2333333333333333) }
+	</style>
+	<script type="text/javascript"> document.createElement("video");document.createElement("audio");document.createElement("track"); </script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+	<style type="text/css">
+		.navbar-brand {
+			position: absolute;
+			clip: rect(1px, 1px, 1px, 1px);
+		}
+	</style>
+	
+</head>
+
+<body class="page page-id-284 page-template page-template-homepage page-template-homepage-php custom-background" ng-controller="sesameController">
+	<div id="overlay"></div>
+
+	<div id="page" class="hfeed site">
+
+		
+		<div class="sesame-search-directive header_search" style="display: none;">
+			<div class="container">
+				<div class="row row-centered">
+					<div class="col-centered">
+						<form role="search" method="get" id="searchform" class="searchform navbar-form" ng-submit="searchitem()">
+						    <div class="input-group">
+						      	<div class="input-group-btn">
+						        	<button id="searchbtn" class="btn btn-default" type="submit"><span class="font-icon sch-icon"></span></button>
+						      	</div>
+						      	<input type="text" value="" ng-model="search_key" class="form-control" placeholder="Search" name="s" id="s">
+						    </div>
+					  	</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<header id="masthead" role="banner">
+
+			<div class="container">
+				<div class="row">
+					<div class="brandlogo col-xs-7">
+						<a href="#/"><img src="images/logo.png" class=""/></a>
+					</div>
+					<!-- <div>
+						<div id="country-icon"><img src="images/country-menu.png"></div>
+						<select id="country" ng-options="country as country.country for country in env.countryData track by country.country " 
+	   					ng-model="countries.selectedCountry" ng-change="onCountryChange()"></select>
+					</div> -->
+					<div class="sesame-search-directive navitems mobile col-xs-5 pull-right">
+						<ul class="row li">
+							<li class="col-xs-4">
+								<a href="#/parents">
+									<span class="parenticon"></span>
+								</a>
+							</li>
+							<li class="col-xs-4 searchlink search">
+								<a href="">
+									<span class="searchicon"></span>
+								</a>
+							</li>
+							<li class="col-xs-4">
+								<!-- <div id="country-icon"><img src="images/country-menu.png"></div> -->
+								<select class="country-icon" id="country" ng-options="country as country.country for country in env.countryData track by country.country " ng-model="countries.selectedCountry" ng-change="onCountryChange()"></select>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header><!-- #masthead -->
+		<div class="mobile mobilenav" ng-if="innermenu">
+			<div class="navitems col-md-10 col-sm-9 col-xs-12">
+				<ul class="li">
+					<li class="nbtn {{menu.title}}" ng-repeat="menu in Menus">
+						<a href="#/{{menu.title}}"><span class="{{menu.title}}"></span>
+							<h6>{{menu.label}}</h6>
+						</a>
+					</li>							
+				</ul>
+			</div>
+		</div>
+
+		<div id="content" class="site-content" ui-view></div>
+
+		<footer>
+			<div id="footer_wrapper" class="pad40 pbottom20">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="col-xs-6">
+								<h4 class="ucase">{{Footer.other_links.label}}</h4>
+								<ul class="li nopad">
+									<li ng-repeat="otherlink in Footer.other_links.links">
+										<a target="_blank" href="{{otherlink.links}}">{{otherlink.label}}</a>
+									</li>	
+									<!-- <li>
+										<a target="_blank" href="http://www.sesameworkshop.org/">Sesame Workshop</a>
+									</li>			
+									<li>
+										<a target="_blank" href="https://www.metlife.com/metlife-foundation/index.html">MetLife Foundation</a>
+									</li>				
+									<li>
+										<a href="#/metlife-employees">MetLife Employees</a>
+									</li>
+									<li>
+										<a target="_blank" href="http://pbskids.org/tvschedules/stationfinder.html">Local Stations</a>
+									</li>
+									<li>
+										<a href="#/terms-of-use">Terms of Use</a>
+									</li> -->
+											
+								</ul>
+							</div>
+							<div class="col-xs-6">
+								<h4 class="ucase">{{Footer.social_links.label}}</h4>
+								<div class="social_links">
+									<a target="_blank" href="{{sociallink.links}}" ng-repeat="sociallink in Footer.social_links.links">
+										<img src="{{sociallink.label}}"/>
+									</a>
+									<!-- <a target="_blank" href="https://twitter.com/sesamestreet">
+										<img src="images/twitter1.png"/>
+									</a>
+									<a target="_blank" href="http://instagram.com/sesamestreet">
+										<img src="images/instagram1.png"/>
+									</a>
+									<a target="_blank" href="https://www.youtube.com/user/SesameStreet">
+										<img src="images/youtube1.png"/>
+									</a>
+									<a target="_blank" href="https://www.pinterest.com/sesamestreet/">
+										<img src="images/pinterest1.png"/>
+									</a> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="footer_copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 fdiv">
+							<div class="pull-left col-xs-5">
+								<a href="#/privacy-policy">{{Footer.privacy_links.label}}</a>
+							</div>
+							<div class="pull-right col-xs-7 text-right" ng-show="Footer.copyrights">
+								<p class="inlineblock">© <span>{{Footer.copyrights}}</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div><!-- #page -->
+	<style>
+	.vjs-default-skin .vjs-control-bar, .vjs-default-skin .vjs-big-play-button{background: rgba(2555,255,255,0.7);border: none;width:80px;height:80px;
+	-webkit-border-radius: 50%; 
+	  -moz-border-radius: 50%; 
+	  border-radius: 50%; 
+	}
+	</style>
+    <script type='text/javascript' src='scripts/vendors/angular.min.js'></script>
+    <script type='text/javascript' src='scripts/vendors/angular-ui-router.min.js'></script>
+    <script type='text/javascript' src='scripts/vendors/ng-cordova.min.js'></script>
+    <script type='text/javascript' src='cordova.js'></script>
+    <script type='text/javascript' src='scripts/vendors/imgcache.js'></script>
+    <script type='text/javascript' src='scripts/vendors/ng-imgcache.js'></script>
+	<script type='text/javascript' src='scripts/vendors/sesame-default.js?ver=20150301'></script>
+	<script type='text/javascript' src='scripts/vendors/custom.min.js?ver=20150301'></script>
+	<script type='text/javascript' src='scripts/vendors/theme.js?ver=20150301'></script>
+	<script type='text/javascript' src='scripts/vendors/angular-touch.min.js'></script>
+
+    <script type='text/javascript' src='scripts/app.js'></script>
+
+    <script type='text/javascript' src='scripts/controllers/sesamecontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/homecontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/metlifeemployeecontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/parentcontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/privacypolicycontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/termofusecontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/searchcontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/videocontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/audiocontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/activitycontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/gamecontroller.js'></script>
+    <script type='text/javascript' src='scripts/controllers/charactercontroller.js'></script>
+
+
+   
+
+    <script type='text/javascript' src='scripts/filters/categoryfilter.js'></script>
+    <script type='text/javascript' src='scripts/filters/uniquefilter.js'></script>
+
+    <script type='text/javascript' src='scripts/directives/popvideodirective.js'></script>
+    <script type='text/javascript' src='scripts/directives/popaudiodirective.js'></script>
+    <script type='text/javascript' src='scripts/directives/popactivitydirective.js'></script>
+    <script type='text/javascript' src='scripts/directives/popgamedirective.js'></script>
+    <script type='text/javascript' src='scripts/directives/lightcharacterdirective.js'></script>
+    <script type='text/javascript' src='scripts/directives/searchdirective.js'></script>
+
+    <script type='text/javascript' src='scripts/factories/getdata.js'></script>
+	<script type="text/javascript">//<![CDATA[
+	    var _gaq = _gaq || [];
+	    var trackingID = 'UA-60996802-1';
+	    _gaq.push(['_setAccount','UA-60996802-1']);
+	    _gaq.push(['_trackPageview']);
+	    (function() {
+	        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	    })();
+	//]]></script>
+
+
+</body>
+</html>

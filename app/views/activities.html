@@ -1,0 +1,86 @@
+<div id="activitiespage">
+	<section class="activities">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12" id="videohead" ng-show="PageInfo.title">
+					<h1 class="headline">{{PageInfo.title}}</h1>
+				</div>
+				<div class="col-xs-12 pull-right text-right" id="categoryhead">
+					<div class="categorydiv">
+						<ul ng-if="categoryList.length">
+							<li class="filter" ng-class="{'active': type == 'all'}">
+								<a href="" ng-click="onCategoryClick('all')">{{StaticLabels.all}}</a>
+							</li>
+							<li class="filter" ng-class="{'active': type == '{{cat}}'}" ng-repeat="cat in categoryList | unique">
+								<a href="" ng-click="onCategoryClick(cat)">{{cat}}</a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row pbottom30 relative">
+				<div class="searchloop">
+					<div class="col-xs-12">
+						<div class="sesame-pop-activity introbox col-xs-6" ng-repeat="activity in Activities | category : type">
+							<a class="popup-activity  activityclass {{activity.name}}" title="{{activity.title}}" data-sect="{{activity.name}}_mob"  ng-click="onActivityClick($event)">
+								<div class="activity thumbbox">
+									<div class="rounded relative">
+										<img ng-cache ng-src="{{activity.poster_image}}" class="wd100" alt="{{activity.title}}"/>
+										<span class="acicon"></span>
+										<div class="thumb_desc">
+											<h6>{{activity.title}}</h6>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="activitymobile single_activity" id="{{activity.name}}_mob">
+								<div id="{{activity.name}}" class="activitylbox">
+									<div class="row pad20 pbottom30">
+										<div class="activityblock">
+											<div class="col-md-6  col-xs-8">
+												<h2>{{activity.title}}</h2>
+												<div class="comic_txt">
+													<p class="response-description" ng-bind-html="activity.description"></p>
+												</div>
+											</div>
+											<div class="col-md-6  col-xs-4">	
+												<a class="site-btn back_btn goback" data-sect="{{activity.name}}_mob" ><span class="font-icon back-icon"></span> {{StaticLabels.back_button}}</a>
+											</div>	
+										</div>
+										<div class="text-center">
+											<a ng-click="openPdfLink($event, activity.download_file, activity.file_url)" class="download-doc">
+												<div class="downloadbtn site-btn popupbox">{{StaticLabels.download_button}} <span class="font-icon dl-icon"></span></div>
+											</a>
+										</div>
+									</div>
+									<div class="row" ng-if="activity.gallery != 0">
+										<div class="responsive_slider">
+											<div class="owl-single-activity">
+												<div class="item" ng-repeat="pic in activity.gallery">
+													<img ng-cache ng-src="{{pic}}"/>
+												</div>	
+											</div>			
+										</div>
+									</div>
+								</div>
+							</div>					
+						</div>
+					</div>
+				</div>
+				<div class="pager-list"></div>
+			</div>
+		</div>
+	</section>
+</div>
+<div class="relative pattern"></div>
+<section id="metlife-ad">
+	<div class="container mcdiv">
+		<div class="row row-centered">
+			<div class="col-xs-10 col-centered metlifediv" ng-show="Metlife.metlife_button_text">
+				<h5 class="ucase">{{Metlife.metlife_text}}</h5>
+				<img class="inline pleft40 pright40 img-responsive" src="{{Metlife.metlife_logo}}" class="img-responsive"/>
+				<a target="_blank" href="{{Metlife.metlife_link}}" class="site-btn">{{Metlife.metlife_button_text}} </a>
+			</div>
+		</div>
+	</div>
+</section>

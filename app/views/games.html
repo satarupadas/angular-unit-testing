@@ -1,0 +1,58 @@
+<div id="gamespage">
+	<section class="games">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12" id="videohead" ng-show="PageInfo.title">
+					<h1 class="headline">{{PageInfo.title}}</h1>
+				</div>
+				<div class="col-md-9 col-xs-12 col-sm-12 pull-right text-right" id="categoryhead">
+					<div class="categorydiv">
+						<ul ng-if="categoryList.length">
+							<li class="filter" ng-class="{'active': type == 'all'}">
+								<a href="" ng-click="onCategoryClick('all')">{{StaticLabels.all}}</a>
+							</li>
+							<li class="filter" ng-class="{'active': type == '{{cat}}'}" ng-repeat="cat in categoryList | unique">
+								<a href="" ng-click="onCategoryClick(cat)">{{cat}}</a>
+							</li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row relative pbottom30">
+				<div class="searchloop" id="searchloop">
+					<div class="col-md-12 col-lg-12 col-sm-11 col-xs-12 col-lg-12">
+ 						<div class="sesame-pop-game introbox col-xs-6" ng-repeat="game in Games | category : type">
+				       		<div class="g_{{game.name}} none">
+				       			<a class="" title="{{game.title}}" href="game.file_url"></a>
+				       		</div>		
+							<a id="{{game.name}}" class="gmobile  popup-games gameclass {{game.name}}" title="{{game.title}}" ng-click="onGameClick($event, game.file_url)">
+								<div class="games thumbbox">
+									<div class="rounded relative" style="background:url({{game.poster_image}}) no-repeat">
+										<img ng-cache ng-src="{{game.poster_image}}" class="wd100"/>
+										<span class="gicon"></span>
+										<div class="thumb_desc">
+											<h6>{{game.title}}</h6>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="pager-list"></div>
+			</div>
+		</div>
+	</section>
+</div>
+<div class="relative pattern"></div>
+<section id="metlife-ad">
+	<div class="container mcdiv">
+		<div class="row row-centered">
+			<div class="col-xs-10 col-centered metlifediv" ng-show="Metlife.metlife_button_text">
+				<h5 class="ucase">{{Metlife.metlife_text}}</h5>
+				<img class="inline pleft40 pright40 img-responsive" src="{{Metlife.metlife_logo}}" class="img-responsive"/>
+				<a target="_blank" href="{{Metlife.metlife_link}}" class="site-btn">{{Metlife.metlife_button_text}} </a>
+			</div>
+		</div>
+	</div>
+</section>

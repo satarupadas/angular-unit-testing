@@ -1,0 +1,63 @@
+<div id="parentspage" class="clear">
+	<section id="intro-mod" class="pattern parents">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<img class="brandlogo img-responsive" ng-cache ng-src="{{AllParentsData.intro_banner}}"/>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<section id="parents-caregivers" class="odd pad10 pbottom30" ng-repeat="parent in Parents">
+      	<div class="container">
+			<div class="row">
+				<div class="col-xs-6 pad10">
+					<h1 class="headline" style="background:{{parent.background_color}}">{{parent.title}}</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 pcntdiv_1">
+					<p>
+						<p class="response-description" ng-bind-html="parent.description"></p>
+					</p>
+					<div class="links">
+						<ul class="li nomargin nopad">
+							<li class="inline pright20" ng-repeat="link in parent.links">
+								<a target="_blank" href="{{link.linkurl}}">{{link.title}}</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+		
+				<div class="col-xs-12">
+					<div class="sesame-pop-activity col-xs-6 pad20 ppdfdiv" ng-repeat="download in parent.downloads">
+						<div class="downloaddiv relative">
+							<a ng-click="openPdfLink($event, download.download_file, download.file_url)" class="download-doc">
+								<img class="wd100" ng-cache ng-src="{{download.background_image}}"/>
+								<div class="downloadcnt">
+									<span class="dtxt">{{download.title}}</span>
+									<span class="dicon"></span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </section>
+	<div class="relative pattern"></div>
+	<section id="metlife-ad">
+		<div class="container mcdiv">
+			<div class="row row-centered">
+				<div class="col-xs-10 col-centered metlifediv" ng-show="Metlife.metlife_button_text">
+					<h5 class="ucase">{{Metlife.metlife_text}}</h5>
+					<img class="inline pleft40 pright40 img-responsive" src="{{Metlife.metlife_logo}}" class="img-responsive"/>
+					<a target="_blank" href="{{Metlife.metlife_link}}" class="site-btn">{{Metlife.metlife_button_text}} </a>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
